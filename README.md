@@ -5,7 +5,12 @@
 <b>Description:</b></br>
 This is a set of Forms and Workbooks that we have documented as scriptures with the techniques to resolve problems such as system inefficiency.
 
+I note that we classify the design and the questions asked in the Forms and the Workbooks as techniques.
+
 In addition, we use add-on software to automate computing tasks and the generation of reports using data from Microsoft EXCEL workbooks.</br>
+
+# Note
+Database = collection of information in a set of time
 
 # Add-on Software
 We've written the add-on software using among others:</br>
