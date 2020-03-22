@@ -416,8 +416,18 @@ public class UsbongHTTPConnect {
 				}
 				
 				//added by Mike, 20200306
-				//patient name
 				JSONObject transactionInJSONFormat = new JSONObject();
+
+				//added by Mike, 20200322
+				if (inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].equals("")) {
+					continue;
+				}
+				else {
+					//auto-correct
+					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace(" ","");
+
+					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace(",",", ");				
+				}
 
 				transactionInJSONFormat.put(""+INPUT_PATIENT_NAME_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ]));
 					
