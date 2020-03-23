@@ -1,6 +1,6 @@
-set mainDirectory=%~dp0
+set mainDirectory=G:\Usbong MOSC\Everyone\Information Desk\add-on software
 cd /d %mainDirectory%
-java -cp .\software;.\software\org.json.jar;.\software\org.apache.httpclient.jar;.\software\org.apache.httpcore.jar;.\software\org.apache.commons-logging.jar UsbongHTTPConnect "upload" http://localhost/ "C:/Usbong/unit/add-on software/output/kms/client/"*.txt
+java -cp .\software;.\software\org.json.jar;.\software\org.apache.httpclient.jar;.\software\org.apache.httpcore.jar;.\software\org.apache.commons-logging.jar UsbongHTTPConnect "upload" http://localhost/ "output/kms/"*.txt
 cd ..
 %2
 PAUSE
