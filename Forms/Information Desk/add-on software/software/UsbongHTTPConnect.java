@@ -423,10 +423,12 @@ public class UsbongHTTPConnect {
 					continue;
 				}
 				else {
-					//auto-correct
-					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace(" ","");
+					//auto-correct; edited by Mike, 202003
+					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace("  "," ");//(" ","");
 
-					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace(",",", ");				
+					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].replace(" , ",", ");//(",",", ");				
+
+					inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ] = inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ].trim();				
 				}
 
 				transactionInJSONFormat.put(""+INPUT_PATIENT_NAME_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_PATIENT_NAME_COLUMN_MOSC_HQ]));
@@ -442,7 +444,12 @@ public class UsbongHTTPConnect {
 					transactionInJSONFormat.put(""+INPUT_X_RAY_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_X_RAY_COLUMN_MOSC_HQ]));					
 				}
 
+/*
+				String dateTimeStamp = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
+				System.out.println(">>" + dateTimeStamp);
+*/
 				transactionInJSONFormat.put(""+INPUT_TRANSACTION_DATE_COLUMN, dateTimeStamp);
+
 				transactionInJSONFormat.put("transactionType", "CASH");
 
 				json.put("i"+transactionCount, transactionInJSONFormat);    				
