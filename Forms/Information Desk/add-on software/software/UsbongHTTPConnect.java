@@ -9,7 +9,7 @@
 
   @author: Michael Syson
   @date created: 20190807
-  @date updated: 20200328
+  @date updated: 20200408
 
   Given:
   1) Lists with the details of the transactions for the day from the Information Desk workbook's auto-generated output files at our partner clinic, Marikina Orthopedic Specialty Clinic (MOSC) Headquarters.
@@ -125,9 +125,10 @@ public class UsbongHTTPConnect {
 	//these are for transactions we classify as for Syson, Pedro
 	private static final int INPUT_X_RAY_COLUMN_MOSC_HQ_PEDRO = 4; //column E, Syson, Pedro
 	private static final int INPUT_LAB_COLUMN_MOSC_HQ_PEDRO = 5; //column F, Syson, Pedro
+	private static final int INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO = 6; //column G, Syson, Pedro //added by Mike, 20200408
 
 	//these are for the rest of the medical doctors
-	private static final int INPUT_NOTES_COLUMN_MOSC_HQ = 6; //column G	
+	private static final int INPUT_NOTES_COLUMN_MOSC_HQ = 6; //column G
 	private static final int INPUT_X_RAY_COLUMN_MOSC_HQ = 7; //column H
 
 	//added by Mike, 20190811; edited by Mike, 20200308
@@ -440,6 +441,13 @@ public class UsbongHTTPConnect {
 					transactionInJSONFormat.put(""+INPUT_X_RAY_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_X_RAY_COLUMN_MOSC_HQ_PEDRO]));
 
 					transactionInJSONFormat.put(""+INPUT_LAB_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_LAB_COLUMN_MOSC_HQ_PEDRO]));
+
+					if (inputColumns.length <= INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO) {
+						transactionInJSONFormat.put(""+INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO, "NONE");
+					}
+					else {
+						transactionInJSONFormat.put(""+INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO]));
+					}
 				}
 				else {
 					transactionInJSONFormat.put(""+INPUT_NOTES_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_NOTES_COLUMN_MOSC_HQ]));
