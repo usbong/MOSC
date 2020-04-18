@@ -128,19 +128,21 @@ public class UsbongHTTPConnect {
 	private static final int INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO = 6; //column G, Syson, Pedro //added by Mike, 20200408
 
 	//added by Mike, 20200418
-	private static final int INPUT_PAS_COLUMN_MOSC_HQ_PEDRO = 7; //column H, Syson, Pedro 
-	private static final int INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO = 8; //column I, Syson, Pedro
-	private static final int INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO = 9; //column J, Syson, Pedro
+	private static final int INPUT_MED_COLUMN_MOSC_HQ_PEDRO = 7; //column H, Syson, Pedro 
+	private static final int INPUT_PAS_COLUMN_MOSC_HQ_PEDRO = 8; //column I, Syson, Pedro 
+	private static final int INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO = 9; //column J, Syson, Pedro
+	private static final int INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO = 10; //column K, Syson, Pedro
 
 	//these are for the rest of the medical doctors
 	private static final int INPUT_NOTES_COLUMN_MOSC_HQ = 6; //column G
 	private static final int INPUT_X_RAY_COLUMN_MOSC_HQ = 7; //column H
 	
 	//added by Mike, 20200418
-	private static final int INPUT_PAS_COLUMN_MOSC_HQ = 8; //column I, Syson, Pedro 
-	private static final int INPUT_MD_OR_COLUMN_MOSC_HQ = 9; //column J, Syson, Pedro
-	private static final int INPUT_MOSC_OR_COLUMN_MOSC_HQ = 10; //column K, Syson, Pedro
-	private static final int INPUT_PAS_OR_COLUMN_MOSC_HQ = 11; //column L, Syson, Pedro
+	private static final int INPUT_MED_COLUMN_MOSC_HQ = 8; //column I
+	private static final int INPUT_PAS_COLUMN_MOSC_HQ = 9; //column J 
+	private static final int INPUT_MD_OR_COLUMN_MOSC_HQ = 10; //column K
+	private static final int INPUT_MOSC_OR_COLUMN_MOSC_HQ = 11; //column L
+	private static final int INPUT_PAS_OR_COLUMN_MOSC_HQ = 12; //column M
 
 	//added by Mike, 20190811; edited by Mike, 20200308
 	private static final int INPUT_OR_NUMBER_COLUMN = 0; //Official Receipt Number
@@ -459,39 +461,49 @@ public class UsbongHTTPConnect {
 					else {
 						transactionInJSONFormat.put(""+INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_NOTES_COLUMN_MOSC_HQ_PEDRO]));
 					}
-/*	//TO-DO: -update: this
+
 					//added by Mike, 20200418
-					if (inputColumns.length < INPUT_PAS_COLUMN_MOSC_HQ_PEDRO+1) {
+					if (inputColumns.length > INPUT_MED_COLUMN_MOSC_HQ_PEDRO) {
+						transactionInJSONFormat.put(""+INPUT_MED_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_MED_COLUMN_MOSC_HQ_PEDRO]));
+					}
+
+					if (inputColumns.length > INPUT_PAS_COLUMN_MOSC_HQ_PEDRO) {
 						transactionInJSONFormat.put(""+INPUT_PAS_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_PAS_COLUMN_MOSC_HQ_PEDRO]));
 					}
 
-					if (inputColumns.length < INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO+1) {
+					if (inputColumns.length > INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO) {
 						transactionInJSONFormat.put(""+INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_MOSC_OR_COLUMN_MOSC_HQ_PEDRO]));
 					}
 
-					if (inputColumns.length == INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO+1) {
+					if (inputColumns.length > INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO) {
 						transactionInJSONFormat.put(""+INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO, autoEscapeToJSONFormat(inputColumns[INPUT_PAS_OR_COLUMN_MOSC_HQ_PEDRO]));
-					}					
-*/					
+					}
 				}
 				else {
 					transactionInJSONFormat.put(""+INPUT_NOTES_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_NOTES_COLUMN_MOSC_HQ]));
 
 					transactionInJSONFormat.put(""+INPUT_X_RAY_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_X_RAY_COLUMN_MOSC_HQ]));					
-/*	//TO-DO: -update: this
+
 					//added by Mike, 20200418
-					if (inputColumns.length < INPUT_PAS_COLUMN_MOSC_HQ+1) {
+					if (inputColumns.length > INPUT_MED_COLUMN_MOSC_HQ) {
+						transactionInJSONFormat.put(""+INPUT_MED_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_MED_COLUMN_MOSC_HQ]));
+					}
+
+					if (inputColumns.length > INPUT_PAS_COLUMN_MOSC_HQ) {
 						transactionInJSONFormat.put(""+INPUT_PAS_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_PAS_COLUMN_MOSC_HQ]));
 					}
 
-					if (inputColumns.length < INPUT_MOSC_OR_COLUMN_MOSC_HQ+1) {
+					if (inputColumns.length > INPUT_MD_OR_COLUMN_MOSC_HQ) {
+						transactionInJSONFormat.put(""+INPUT_MD_OR_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_MD_OR_COLUMN_MOSC_HQ]));
+					}
+
+					if (inputColumns.length > INPUT_MOSC_OR_COLUMN_MOSC_HQ) {
 						transactionInJSONFormat.put(""+INPUT_MOSC_OR_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_MOSC_OR_COLUMN_MOSC_HQ]));
 					}
 
-					if (inputColumns.length < INPUT_PAS_OR_COLUMN_MOSC_HQ+1) {
+					if (inputColumns.length > INPUT_PAS_OR_COLUMN_MOSC_HQ) {
 						transactionInJSONFormat.put(""+INPUT_PAS_OR_COLUMN_MOSC_HQ, autoEscapeToJSONFormat(inputColumns[INPUT_PAS_OR_COLUMN_MOSC_HQ]));
 					}
-*/					
 				}
 
 /*
