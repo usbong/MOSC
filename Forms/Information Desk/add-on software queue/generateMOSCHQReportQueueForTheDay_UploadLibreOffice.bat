@@ -4,5 +4,5 @@ java -cp .\softwareLibreOffice;.\softwareLibreOffice\org.json.jar;.\softwareLibr
 
 popd
 
-PAUSE
-#exit
+#PAUSE
+exit
