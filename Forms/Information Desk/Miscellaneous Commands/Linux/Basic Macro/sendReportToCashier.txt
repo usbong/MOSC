@@ -109,23 +109,11 @@ Sub sendReportToCashier
   dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, saveAsCSVArgs())
 
   document.close(0)
-
-  'TO-DO: -update: this
-  'note: these bash shell commands do not work
-
-'  Shell "bash -c 'sh //home/unit_member/Usbong/add-on software queue/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh'"
-
-'  sFileName = "/home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh"
-
-'  x = Shell ("bash",1,sFileName,True)
-'  msgbox x
-
-'  Shell "bash -c 'sh " & sFileName & "'"
-
-'  x = Shell("/home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh")
-
-'  x = Shell("file:///home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh")
   
+  'edited by Mike, 20200515
+  sFileName = sPath & "/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh"  
+  Shell(sFileName)
+ 
 '  msgbox "Wakas."
 
 End Sub
