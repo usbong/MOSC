@@ -11,7 +11,7 @@ Sub sendReportToCashier
 '
 '  @author: Michael Syson
 '  @date created: 20190807
-'  @date updated: 20200514
+'  @date updated: 20200515
 '
 '  References:
 '  1) https://stackoverflow.com/questions/1319136/openoffice-calc-macro-for-csv-saving;
@@ -60,8 +60,20 @@ Sub sendReportToCashier
   sDateToday = CDateToISO(now()) 'example output: 20200514
 '  sDateToday = date("Y-M-d")  'output: 05-14-2020
 
+'  sDateToday = date("Y")  'output: 05-14-2020
+'  sDateToday = Format(Now(), "Y")
+
+  sYearToday = Left(sDateToday, 4)
+  sMonthToday = Mid(sDateToday, 5, 2)
+  sDayToday = Mid(sDateToday, 7, 2)
+
+'  MsgBox sYearToday
+'  MsgBox sMonthToday
+'  MsgBox sDayToday
+
+  sDateToday = sYearToday & "-" & sMonthToday & "-" & sDayToday
+
 '  MsgBox sDateToday
-'  sDateToday = Split(sDateToday)
 
   document   = ThisComponent.CurrentController.Frame
   dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
