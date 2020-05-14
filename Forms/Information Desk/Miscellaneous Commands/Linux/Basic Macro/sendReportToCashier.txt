@@ -56,7 +56,9 @@ Sub sendReportToCashier
   'auto-identify date today
 '  sDateToday = Format(Now(), "yyyy-mm-dd")
 
-  sDateToday = CDateToISO(now()) 'example output: 202005134
+ 'TO-DO: -update: to use dash, e.g. 2020-05-14
+  sDateToday = CDateToISO(now()) 'example output: 20200514
+'  sDateToday = date("Y-M-d")  'output: 05-14-2020
 
 '  MsgBox sDateToday
 '  sDateToday = Split(sDateToday)
@@ -72,7 +74,10 @@ Sub sendReportToCashier
   'update file location
   sDateToday = Split(sDateToday, " ")(0)
 
-  saveAsCSVArgs(0).Value = sPath & "/Patients" & sDateToday & ".csv" '".txt"
+  'edited by Mike, 20200514
+'  saveAsCSVArgs(0).Value = sPath & "/Patients" & sDateToday & ".csv" '".txt"
+
+  saveAsCSVArgs(0).Value = sPath & "/libreOfficeOutput/Patients" & sDateToday & ".csv" '".txt"
 
 'msgbox saveAsCSVArgs(0).Value
 
