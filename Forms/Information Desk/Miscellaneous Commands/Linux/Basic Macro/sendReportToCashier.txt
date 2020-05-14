@@ -1,0 +1,114 @@
+REM  *****  BASIC  *****
+
+Sub sendReportToCashier
+'  Copyright 2019~2020 Usbong Social Systems, Inc.
+'
+'  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You ' may obtain a copy of the License at
+'
+'  http://www.apache.org/licenses/LICENSE-2.0
+'
+'  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, ' WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing ' permissions and limitations under the License.
+'
+'  @author: Michael Syson
+'  @date created: 20190807
+'  @date updated: 20200514
+'
+'  References:
+'  1) https://stackoverflow.com/questions/1319136/openoffice-calc-macro-for-csv-saving;
+'  last accessed: 20200420
+'  2) https://documentation.libreoffice.org/assets/Uploads/Documentation/en/GS5.1/HTML/GS5113-GettingStartedWithMacros.html#__RefHeading__5158_1196992793;
+'  last accessed: 20200420
+'  3) https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Filter_Options 
+'  last accessed: 20200420
+'
+
+'Application.DisplayAlerts = False
+
+  'added by Mike, 20200508
+  GlobalScope.BasicLibraries.loadLibrary("Tools") 
+  dim sPath as String
+  dim sFileName as String
+  dim sDateToday as String
+
+  dim document as object
+  dim dispatcher as object
+  
+  dim sInformationDeskCalcDocumentFileName as string
+  dim informationDeskCalcDocument as object
+  
+  'added by Mike, 20200508
+  dim saveAsCSVArgs(2) as new com.sun.star.beans.PropertyValue
+  dim saveAsODSArgs(1) as new com.sun.star.beans.PropertyValue
+
+  'added by Mike, 20200508
+  'auto-identify location
+  'Reference: https://ask.libreoffice.org/en/question/207999/how-to-check-folders-name-by-macro/;
+  'last accessed: 20200508
+  'answer by: 0paque on 20190909; updated on 20190909 
+  sPath = DirectoryNameoutofPath(ThisComponent.getURL(),"/")
+'  sPath = ConvertFromURL(sPath) 'removed by Mike, 20200508
+'  MsgBox sPath
+
+  sFileName = FileNameoutofPath(ThisComponent.getURL(),"/")
+'  MsgBox sFileName
+
+  'added by Mike, 20200508; edited by Mike, 20200514
+  'auto-identify date today
+'  sDateToday = Format(Now(), "yyyy-mm-dd")
+
+  sDateToday = CDateToISO(now()) 'example output: 202005134
+
+'  MsgBox sDateToday
+'  sDateToday = Split(sDateToday)
+
+  document   = ThisComponent.CurrentController.Frame
+  dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+  dispatcherTwo = createUnoService("com.sun.star.frame.DispatchHelper")
+
+'  dim args1(2) as new com.sun.star.beans.PropertyValue
+  sPath = DirectoryNameoutofPath(ThisComponent.getURL(),"/")
+  saveAsCSVArgs(0).Name = "URL"
+  'update file location
+  sDateToday = Split(sDateToday, " ")(0)
+
+  saveAsCSVArgs(0).Value = sPath & "/Patients" & sDateToday & ".csv" '".txt"
+
+'msgbox saveAsCSVArgs(0).Value
+
+  saveAsCSVArgs(1).Name = "FilterName"
+  saveAsCSVArgs(1).Value = "Text - txt - csv (StarCalc)"
+  saveAsCSVArgs(2).Name = "FilterOptions"
+  saveAsCSVArgs(2).Value = "44,34,0,1,76,1"
+
+'  Msgbox args1(0).Value
+
+  sInformationDeskCalcDocumentFileName = sPath & "/" & sFileName
+  
+'  msgbox sInformationDeskCalcDocumentFileName
+  
+  informationDeskCalcDocument = stardesktop.LoadComponentFromURL(sInformationDeskCalcDocumentFileName, "_blank", 0, Array())
+  
+  dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, saveAsCSVArgs())
+
+  document.close(0)
+
+  'TO-DO: -update: this
+  'note: these bash shell commands do not work
+
+'  Shell "bash -c 'sh //home/unit_member/Usbong/add-on software queue/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh'"
+
+'  sFileName = "/home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh"
+
+'  x = Shell ("bash",1,sFileName,True)
+'  msgbox x
+
+'  Shell "bash -c 'sh " & sFileName & "'"
+
+'  x = Shell("/home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh")
+
+'  x = Shell("file:///home/unit_member/Usbong/software/generateMOSCHQReportQueueForTheDay_UploadLibreOfficeLinux.sh")
+  
+'  msgbox "Wakas."
+
+End Sub
