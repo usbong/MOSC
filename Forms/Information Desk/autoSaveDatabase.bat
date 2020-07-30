@@ -1,9 +1,9 @@
 set myDate=%date:~10,4%%date:~4,2%%date:~7,2%
-set myTime=%time:~1,2%%time:~3,2%
+set myTime=%time:~0,2%%time:~3,2%
 
-set myHour=%time:~1,1%
+set myHour=%time:~0,2%
 
-if %myHour% lss 10 (set myNewHour=0%myHour%)
+if %myHour% lss 10 (set myNewHour=0%time:~1,1%) else (set myNewHour=%myHour%)
 
 echo %myNewHour%
 
